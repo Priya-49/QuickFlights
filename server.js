@@ -1,8 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
+
 const app = express();
+const MONGODB_URI = process.env.MONGODB_URI;
 app.use(express.json());
 app.use(cors());
 
@@ -12,8 +16,9 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/flightsDB")
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
