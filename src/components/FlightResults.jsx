@@ -3,7 +3,7 @@ import React from "react";
 const FlightResults = ({ flights }) => {
   const handleSaveFlight = async (flight) => {
     try {
-      const response = await fetch("http://localhost:5000/save-flight", {
+      const response = await fetch("https://quickflights-production.up.railway.app/save-flight", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(flight),

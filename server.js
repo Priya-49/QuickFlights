@@ -4,18 +4,23 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
-
 const app = express();
 const MONGODB_URI = process.env.MONGODB_URI;
+
+// CORS configuration (allowing only specific frontend URL)
+app.use(cors({
+  origin: 'https://quickflights-production.up.railway.app', // Your frontend URL
+  methods: 'GET,POST',
+  allowedHeaders: 'Content-Type,Authorization',
+}));
+
 app.use(express.json());
-app.use(cors());
 
 // Debugging Middleware
 app.use((req, res, next) => {
   console.log(`Received ${req.method} request at ${req.url}`);
   next();
 });
-
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
