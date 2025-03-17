@@ -4,10 +4,10 @@ const SavedFlightsPage = () => {
   const [savedFlights, setSavedFlights] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/saved-flights")
-      .then((response) => response.json())
-      .then((data) => setSavedFlights(data))
-      .catch((error) => console.error("Error fetching saved flights:", error));
+    fetch("https://quickflights-production.up.railway.app/saved-flights")
+    .then((response) => response.json())
+    .then((data) => setSavedFlights(data))
+    .catch((error) => console.error("Error fetching saved flights:", error));  
   }, []);
 
   return (
